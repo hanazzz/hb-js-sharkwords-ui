@@ -40,7 +40,8 @@ const generateLetterButtons = () => {
 // `buttonEl` is an `HTMLElement` object.
 //
 const disableLetterButton = (buttonEl) => {
-  // Replace this with your code
+  // const disabledButton = document.querySelector(buttonEl);
+  buttonEl.setAttribute('disabled', 'true');
 };
 
 // This is a helper function we will use in the future
