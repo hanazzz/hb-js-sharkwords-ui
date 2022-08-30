@@ -30,7 +30,7 @@ const createDivsForChars = (word) => {
 // The buttons should be appended to the section with id="letter-buttons"
 const generateLetterButtons = () => {
   for (const letter of ALPHABET) {
-    const letterButton = `<button>${letter}</button>`;
+    const letterButton = `<button class="letter-button">${letter}</button>`;
     document.querySelector('#letter-buttons').insertAdjacentHTML('beforeend', letterButton);
   }
 };
@@ -65,6 +65,11 @@ const handleCorrectGuess = (letter) => {
 
 };
 
+const handleWrongGuess = () => {
+  // numWrong += 1;
+  // Replace this with your code
+};
+
 //
 // Called when `letter` is not in word.
 //
@@ -90,4 +95,25 @@ const handleCorrectGuess = (letter) => {
 
   // in the next lab, you will be adding functionality to handle when
   // someone clicks on a letter
+
+  const allLetterButtons = document.querySelectorAll('.letter-button')
+
+  for (const button of allLetterButtons) {
+    button.addEventListener('click', (evt) => {
+      const letter = button.innerHTML;
+  
+      const targetBtn = evt.target;
+  
+      disableLetterButton(targetBtn);
+  
+      if (isLetterInWord(letter)) {
+        handleCorrectGuess(letter);
+      } else {
+        handleWrongGuess(letter);
+      }
+  
+    });
+  }
+
+  
 })();
