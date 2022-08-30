@@ -54,6 +54,24 @@ const isLetterInWord = (letter) => {
   }
 };
 
+const handleCorrectGuess = (letter) => {
+  // get array of elements with matching letter class
+  const letterDivs = document.querySelectorAll(`.${letter}`)
+
+  for (const letterDiv of letterDivs) {
+    // letterDiv.insertAdjacentHTML("afterbegin", `${letter}`);
+    letterDiv.insertAdjacentText("afterbegin", `${letter}`);
+  }
+
+};
+
+//
+// Called when `letter` is not in word.
+//
+// Increment `numWrong` and update the shark image.
+// If the shark gets the person (5 wrong guesses), disable
+// all buttons and show the "play again" message.
+
 // This is like if __name__ == '__main__' in Python
 // It will be called when the file is run (because
 // we call the function on line 66)
