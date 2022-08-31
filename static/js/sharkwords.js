@@ -16,6 +16,7 @@ const WORDS = [
 ];
 
 let numWrong = 0;
+let numRight = 0;
 
 // Loop over the chars in `word` and create divs.
 // The divs should be appended to the section with id="word-container".
@@ -61,6 +62,7 @@ const handleCorrectGuess = (letter) => {
   for (const letterDiv of letterDivs) {
     // letterDiv.insertAdjacentHTML("afterbegin", `${letter}`);
     letterDiv.insertAdjacentText("afterbegin", `${letter}`);
+    numRight += 1;
   }
 
 };
@@ -80,7 +82,12 @@ const handleWrongGuess = () => {
   }
 };
 
-//
+//  Reset game state. Called before restarting the game.
+const resetGame = () => {
+  window.location = '/sharkwords';
+};
+
+
 // Called when `letter` is not in word.
 //
 // Increment `numWrong` and update the shark image.
@@ -119,11 +126,23 @@ const handleWrongGuess = () => {
       if (isLetterInWord(letter)) {
         handleCorrectGuess(letter);
       } else {
-        handleWrongGuess(letter);
+        handleWrongGuess();
+      }
+
+      if (word.length === numRight) {
+        alert('You won!!');
+        document.querySelector('#play-again').style.display = '';
       }
   
     });
   }
 
   
+
+  // reset game when secret play again link is clicked
+  const secretLink = document.querySelector('#play-again');
+
+  secretLink.addEventListener('click', resetGame);
+  
+
 })();
