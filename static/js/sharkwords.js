@@ -15,7 +15,7 @@ const WORDS = [
   'chocolate',
 ];
 
-const numWrong = 0;
+let numWrong = 0;
 
 // Loop over the chars in `word` and create divs.
 // The divs should be appended to the section with id="word-container".
@@ -66,8 +66,18 @@ const handleCorrectGuess = (letter) => {
 };
 
 const handleWrongGuess = () => {
-  // numWrong += 1;
-  // Replace this with your code
+  numWrong += 1;
+  
+  const photo = document.querySelector('img');
+  photo.setAttribute('src', `/static/images/guess${numWrong}.png`);
+  
+  if (numWrong === 5) {
+    const allLetterButtons = document.querySelectorAll('.letter-button');
+    for (const button of allLetterButtons) {
+      disableLetterButton(button);
+    }
+    document.querySelector('#play-again').style.display = '';
+  }
 };
 
 //
